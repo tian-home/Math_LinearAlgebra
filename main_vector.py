@@ -7,7 +7,7 @@ if __name__ == "__main__":
     print(len(vec))
     print(vec[0], vec[1])
 
-    vec2 = Vector([3,1])
+    vec2 = Vector([3, 1])
 
     print(vec - vec2)
     print(vec * 3)
@@ -27,3 +27,5 @@ if __name__ == "__main__":
         zero2.normalioze()
     except ZeroDivisionError:
         print("can not")
+
+    print(vec.dot(vec2))

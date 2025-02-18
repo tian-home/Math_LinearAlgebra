@@ -27,6 +27,10 @@ class Vector:
         assert len(self) == len(another), "Error"
         return Vector([a - b for a, b in zip(self, another)])
 
+    def dot(self, another):
+        assert len(self) == len(another), "Error"
+        return sum( a*b for a,b in zip(self, another))
+
     def __mul__(self, k):
         return Vector([k*e for e in self])
 

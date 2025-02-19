@@ -19,5 +19,10 @@ if __name__ == '__main__':
     print(vec + vec2)
     print(vec - vec2)
     print(vec * vec2)
-    print(2* vec)
-    print(222)
+    print(vec.dot(vec2))
+
+    #取模
+    print(np.linalg.norm(vec))
+    #归一化
+    print(vec / np.linalg.norm(vec))
+    print (np.linalg.norm(vec / np.linalg.norm(vec)))

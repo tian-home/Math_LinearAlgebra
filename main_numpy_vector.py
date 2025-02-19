@@ -20,3 +20,4 @@ if __name__ == '__main__':
     print(vec - vec2)
     print(vec * vec2)
     print(2* vec)
+    print(222)

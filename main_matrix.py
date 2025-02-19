@@ -9,3 +9,11 @@ if __name__ == '__main__':
     print(matrix.size())
     print(len(matrix))
     print(matrix[0, 1])
+
+    matrix2 = Matrix([[5,6],[7,8]])
+
+    print(matrix+matrix2)
+    print(matrix-matrix2)
+    print(matrix * 2)
+    print(2 * matrix2)
+    print(Matrix.zero(4,3))

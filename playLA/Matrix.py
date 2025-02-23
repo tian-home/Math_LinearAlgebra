@@ -8,27 +8,45 @@ class Matrix:
 
     @classmethod
     def zero(cls, r, c):
-        return cls([[0]*c for _ in range(r)])
+        return cls([[0] * c for _ in range(r)])
+
+    @classmethod
+    def identity(cls, n):
+        m = [[0] * n for _ in range(n)]
+        for i in range(n):
+            m[i][i] = 1
+        return cls(m)
+
+    def T(self):
+        return Matrix([[e for e in self.col_vector(i)]
+                       for i in range(self.col_num())])
 
     def __add__(self, another):
         assert self.shape() == another.shape(), "Error"
-        return Matrix([[a+b for a, b in zip(self.row_vector(i), another.row_vector(i))]
+        return Matrix([[a + b for a, b in zip(self.row_vector(i), another.row_vector(i))]
                        for i in range(self.row_num())])
 
     def __sub__(self, another):
         assert self.shape() == another.shape(), "Error"
-        return Matrix([[a-b for a, b in zip(self.row_vector(i), another.row_vector(i))]
+        return Matrix([[a - b for a, b in zip(self.row_vector(i), another.row_vector(i))]
                        for i in range(self.row_num())])
 
+    def dot(self, another):
+        if isinstance(another, Vector):
+            return Vector([self.row_vector(i).dot(another) for i in range(self.row_num())])
+        if isinstance(another, Matrix):
+            return Matrix([[self.row_vector(i).dot(another.col_vector(j)) for j in range(another.col_num())]
+                           for i in range(self.row_num())])
+
     def __mul__(self, k):
-        return Matrix( [ [e*k for e in self.row_vector(i)]
-                         for i in range(self.row_num())])
+        return Matrix([[e * k for e in self.row_vector(i)]
+                       for i in range(self.row_num())])
 
     def __rmul__(self, k):
         return self * k
 
     def __truediv__(self, k):
-        return (1/k) * self
+        return (1 / k) * self
 
     def __pos__(self):
         return 1 * self
@@ -57,7 +75,6 @@ class Matrix:
 
     def col_num(self):
         return self.shape()[1]
-
 
     def shape(self):
         return len(self._values), len(self._values[0])

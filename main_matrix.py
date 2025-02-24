@@ -1,4 +1,5 @@
 from playLA.Matrix import Matrix
+from playLA.Vector import Vector
 
 if __name__ == '__main__':
 
@@ -15,5 +16,4 @@ if __name__ == '__main__':
     print(matrix+matrix2)
     print(matrix-matrix2)
     print(matrix * 2)
-    print(2 * matrix2)
-    print(Matrix.zero(4,3))
+

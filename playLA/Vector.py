@@ -35,6 +35,9 @@ class Vector:
             raise ZeroDivisionError("Normalize error! norm is zero.")
         return Vector(self._values) / self.norm()
 
+    def underlying_list(self):
+        return self._values[:]
+
     def dot(self, another):
         """向量点乘，返回结果标量"""
         assert len(self) == len(another), \

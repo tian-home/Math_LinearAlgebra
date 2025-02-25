@@ -17,4 +17,4 @@ if __name__ == '__main__':
     print(matrix-matrix2)
     print(matrix * 2)
 
-    print(1)
+    print(2)

@@ -1,5 +1,6 @@
-from ._global import EPSILON
 import math
+from ._globals import is_zero, is_equal
+
 
 class Vector:
 
@@ -31,12 +32,9 @@ class Vector:
 
     def normalize(self):
         """返回向量的单位向量"""
-        if self.norm() < EPSILON:
+        if is_zero(self.norm()):
             raise ZeroDivisionError("Normalize error! norm is zero.")
         return Vector(self._values) / self.norm()
-
-    def underlying_list(self):
-        return self._values[:]
 
     def dot(self, another):
         """向量点乘，返回结果标量"""
@@ -44,6 +42,10 @@ class Vector:
             "Error in dot product. Length of vectors must be same."
 
         return sum(a * b for a, b in zip(self, another))
+
+    def underlying_list(self):
+        """返回向量的底层列表"""
+        return self._values[:]
 
     def __mul__(self, k):
         """返回数量乘法的结果向量：self * k"""
@@ -64,6 +66,17 @@ class Vector:
     def __neg__(self):
         """返回向量取负的结果向量"""
         return -1 * self
+
+    def __eq__(self, other):
+        """返回向量是否相等"""
+        other_list = other.underlying_list();
+        if(len(other_list) != len(self._values)):
+            return False
+        return all(is_equal(x, y) for x, y in zip(self._values, other_list))
+
+    def __neq__(self, other):
+        """返回向量是否不等"""
+        return not(self == other)
 
     def __iter__(self):
         """返回向量的迭代器"""
